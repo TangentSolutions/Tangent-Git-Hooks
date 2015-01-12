@@ -15,11 +15,12 @@ message_file = sys.argv[1]
 f = open(message_file)
 message = f.read()
 
-p = re.compile('^\[\#\d+\]')
+regex_string = '^.+\#\d+.+$'
+p = re.compile(regex_string)
 if p.match(message) is None:
     print bcolors.FAIL + "======================" + bcolors.ENDC
     print bcolors.FAIL + "|Pivotal ID required  |" + bcolors.ENDC
     print bcolors.FAIL + "======================" + bcolors.ENDC
     print bcolors.FAIL + "This commit needs a pivotal story ID. e.g.: git commit -am'[#82695812] - message goes here .. ' where 82695812 is your pivotal ID" + bcolors.ENDC
+    print "\n\n"
     sys.exit(1)
-
